@@ -35,6 +35,14 @@ app.use(cors(corsOptions))
 
 const PORT = process.env.PORT || 3000
 
+app.get("/", (req, res) => {
+    res.status(200).json({
+        message: "Backend is running!",
+        success: true
+    });
+});
+
+
 //api
 
 app.use("/api/v1/user", userRouter)
