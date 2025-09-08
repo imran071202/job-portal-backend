@@ -27,11 +27,14 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 
+
 const allowedOrigins = [
     "http://localhost:5173",
     "https://job-portal-frontend.vercel.app",
+    "https://skill-bridge-jobs.vercel.app",   // ✅ add your real deployed frontend
     /\.vercel\.app$/   // ✅ allow Vercel preview builds
 ];
+
 const corsOptions = {
     origin: (origin, callback) => {
         if (!origin || allowedOrigins.some(o =>
