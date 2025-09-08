@@ -128,7 +128,7 @@ export const register = async (req, res) => {
             email,
             phoneNumber,
             password: hashPassword,
-            role,
+           role: role.toLowerCase(),
             profile:{
                 profilePhoto:cloudresponse.secure_url
             }
@@ -178,12 +178,13 @@ export const login = async (req, res) => {
             });
         }
 
-        if (role !== foundUser.role) {
-            return res.status(400).json({
-                message: "Account doesn't exist with current role",
-                success: false
-            });
-        }
+       if (role.toLowerCase() !== foundUser.role) {
+    return res.status(400).json({
+        message: "Account doesn't exist with current role",
+        success: false
+    });
+}
+
 
         const tokenData = { userID: foundUser._id };
 
@@ -215,13 +216,15 @@ export const login = async (req, res) => {
   .cookie('token', token, {
       maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
       httpOnly: true,
-      secure: true,        
+      secure: true,       // ✅ required for HTTPS
+      sameSite: "none"    // ✅ allow cross-domain cookies
   })
   .json({
       message: `Welcome ${foundUser.fullname}`,
       foundUser,
       success: true
   });
+
 
 
     } catch (error) {
