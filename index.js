@@ -42,12 +42,13 @@ const corsOptions = {
         )) {
             callback(null, true);
         } else {
-            console.warn(`Blocked by CORS: ${origin}`);
-            callback(null, false); // instead of throwing error
+            console.error(`❌ Blocked by CORS: ${origin}`);
+            callback(new Error("Not allowed by CORS"));
         }
     },
     credentials: true,
 };
+
 
 
 app.use(cors(corsOptions));
