@@ -200,17 +200,29 @@ export const login = async (req, res) => {
             profile: foundUser.profile
         };
 
+        // return res.status(200)
+        //     .cookie('token', token, {
+        //         maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
+        //         httpOnly: true,
+        //         sameSite: 'strict'
+        //     })
+        //     .json({
+        //         message: `Welcome ${foundUser.fullname}`,
+        //         foundUser,
+        //         success: true
+        //     });
         return res.status(200)
-            .cookie('token', token, {
-                maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
-                httpOnly: true,
-                sameSite: 'strict'
-            })
-            .json({
-                message: `Welcome ${foundUser.fullname}`,
-                foundUser,
-                success: true
-            });
+  .cookie('token', token, {
+      maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
+      httpOnly: true,
+      secure: true,        
+  })
+  .json({
+      message: `Welcome ${foundUser.fullname}`,
+      foundUser,
+      success: true
+  });
+
 
     } catch (error) {
         return res.status(500).json({
