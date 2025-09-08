@@ -1,13 +1,12 @@
-import express from "express"
-import cookieParser from "cookie-parser"
-import cors from "cors"
-import dotenv from "dotenv"
-import connectDB from "./utils/db.js"
-import userRouter from "./routes/userRoute.js"
-import companyRouter from "./routes/companyRoute.js"
-import jobRouter from "./routes/jobRoute.js"
+import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";   // ✅ only once
+import dotenv from "dotenv";
+import connectDB from "./utils/db.js";
+import userRouter from "./routes/userRoute.js";
+import companyRouter from "./routes/companyRoute.js";
+import jobRouter from "./routes/jobRoute.js";
 import applicationRouter from "./routes/applicationRoute.js"
-
 
 
 
@@ -27,10 +26,6 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
-
-
-
-import cors from "cors";
 
 const allowedOrigins = [
     "http://localhost:5173",
