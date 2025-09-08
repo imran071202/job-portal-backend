@@ -29,14 +29,31 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 
 
-const corsOptions = {
-    origin: ['http://localhost:5173',
-        'https://skill-bridge-jobs.vercel.app'
-    ],
 
-    credentials: true
-}
-app.use(cors(corsOptions))
+import cors from "cors";
+
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://job-portal-frontend.vercel.app",
+    /\.vercel\.app$/   // ✅ allow Vercel preview builds
+];
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.some(o =>
+            o instanceof RegExp ? o.test(origin) : o === origin
+        )) {
+            callback(null, true);
+        } else {
+            console.warn(`Blocked by CORS: ${origin}`);
+            callback(null, false); // instead of throwing error
+        }
+    },
+    credentials: true,
+};
+
+
+app.use(cors(corsOptions));
+
 
 const PORT = process.env.PORT || 3000
 
