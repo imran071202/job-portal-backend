@@ -7,6 +7,7 @@ import userRouter from "./routes/userRoute.js";
 import companyRouter from "./routes/companyRoute.js";
 import jobRouter from "./routes/jobRoute.js";
 import applicationRouter from "./routes/applicationRoute.js"
+// import path from "path"
 
 
 
@@ -20,6 +21,8 @@ const app = express()
 //         success:true
 //     })
 // })
+
+// const _dirname = path.resolve()
 
 
 //middleware
@@ -72,6 +75,10 @@ app.use("/api/v1/job", jobRouter)
 app.use("/api/v1/application", applicationRouter)
 
 
+// app.use(express.static(path.join(_dirname, "/frontend/dist")))
+// app.get('*', (_,res)=>{
+//     res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"))
+// })
 
 
 
