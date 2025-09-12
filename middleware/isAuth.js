@@ -16,7 +16,7 @@ const isAuth = async (req, res, next) => {
     req._id = decode.userID; // Add user ID to request for later use
     next();
   } catch (error) {
-    console.error("Auth Error:", error.message); // Log for debugging
+    // console.error("Auth Error:", error.message); // Log for debugging
     return res.status(401).json({
       message: "Authentication failed",
       error: error.message,

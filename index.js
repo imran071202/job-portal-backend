@@ -15,15 +15,6 @@ dotenv.config({})
 
 const app = express()
 
-// app.get("/home",(req,res)=>{
-//     return res.status(200).json({
-//         message:"I am backend",
-//         success:true
-//     })
-// })
-
-// const _dirname = path.resolve()
-
 
 //middleware
 app.use(express.json())
@@ -75,20 +66,6 @@ app.use("/api/v1/job", jobRouter)
 app.use("/api/v1/application", applicationRouter)
 
 
-// app.use(express.static(path.join(_dirname, "/frontend/dist")))
-// app.get('*', (_,res)=>{
-//     res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"))
-// })
-
-
-
-// app.listen(PORT, () => {
-//     connectDB()
-
-//     console.log(`server runnling ${PORT}`);
-
-
-// })
 
 const startServer = async () => {
     try {

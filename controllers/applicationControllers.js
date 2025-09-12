@@ -59,11 +59,6 @@ export const applyJob = async (req, res) => {
     }
 }
 
-
-
-
-
-
 export const getAppliedJobs = async (req, res) => {
 
     try {
